@@ -1,56 +1,40 @@
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import make_pipeline
 
-data = pd.DataFrame({
-    'City': ['City A', 'City B', 'City C', 'City D', 'City E', 'City F', 'City G', 'City H'],
-    'GDP_per_Capita': [42000, 85000, 68000, 55000, 82000, 36000, 52000, 48000],
-    'Cost_of_Living': [82, 100, 88, 85, 91, 76, 74, 70],
-    'Transit_Score': [98, 89, 92, 95, 94, 96, 78, 90],
-    'Green_Space_Score': [22, 27, 33, 21, 47, 28, 30, 44],
-    'Air_Quality_Index': [35, 42, 38, 45, 40, 58, 28, 3],
-    'Crime_Rate': [380.7, 295.4, 512.1, 189.0, 420.5, 610.8, 245.3, 330.9],
-    'Graduation_Rate': [88.5, 91.2, 89.4, 84.1, 86.7, 85.9, 87.3, 82.0]
-})
-metadata = pd.DataFrame({
-    'GDP_per_Capita': {
-        'Dimension': 'Economic Viability and Opportunity',
-        'Direction': 'positive'
-    },
-    'Cost_of_Living': {
-        'Dimension': 'Economic Viability and Opportunity',
-        'Direction': 'positive'
-    },
-    'Transit_Score': {
-        'Dimension': 'Quality of Life',
-        'Direction': 'positive'
-    },
-    'Green_Space_Score': {
-        'Dimension': 'Quality of Life',
-        'Direction': 'positive'
-    },
-    'Air_Quality_Index': {
-        'Dimension': 'Health and Safety',
-        'Direction': 'negative'
-    },
-    'Crime_Rate': {
-        'Dimension': 'Health and Safety',
-        'Direction': 'negative'
-    },
-    'Graduation_Rate': {
-        'Dimension': 'Intellectual and Educational Vitality',
-        'Direction': 'positive'
-    }
-})
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
 
-cities = data['City']
-features = data.drop(columns=['City'])
+data = pd.read_csv("Data/Dataset-CityIndicators.csv", skiprows=[0, 2])
+data = data.drop(columns=['% pop 3 & older enrolled in k-12 school'])
+
+dimensions = {
+    'Economic Viability and Opportunity': data.columns[2:7],
+    'Intellectual and Educational Vitality': data.columns[7:13],
+    'Health and Safety': data.columns[13:18],
+    'Quality of Life': data.columns[18:21],
+}
+
+cities = data['Geographic Area Name']
+features = data.drop(columns=['Geographic Area Name', 'total population'])
+features = features.apply(pd.to_numeric, errors='coerce')
 
 negative_indicators = [
-    indicator
-    for indicator, attributes in metadata.items()
-    if attributes['Direction'] == 'negative'
+    'Gini index of income inequality',
+    'housing burden',
+    'rent burden',
+    '% ppl below poverty lvl',
+    'student/teacher ratio',
+    'Mortality (deaths per 100,000)',
+    'crime rate per 100,000 ppl',
+    'mean commute time to work (min)',
 ]
 
 for indicator in negative_indicators:
@@ -65,12 +49,12 @@ high_corr = pairs[pairs['Correlation'].abs() > 0.7]
 print('Pairs with correlation >0.7:')
 print(high_corr.round(3))
 
-scaler = StandardScaler()
-scaled_features = scaler.fit_transform(features)
-scaled_features_df = pd.DataFrame(scaled_features, columns=features.columns)
+imputer = SimpleImputer()
+imputed_features = imputer.fit_transform(features)
 
-print('\nScaled features:')
-print(scaled_features_df)
+scaler = StandardScaler()
+scaled_features = scaler.fit_transform(imputed_features)
+scaled_features_df = pd.DataFrame(scaled_features, columns=features.columns)
 
 pca = PCA()
 principal_components = pca.fit_transform(scaled_features)
@@ -93,9 +77,22 @@ loadings_df = pd.DataFrame(loadings, columns=pc_columns, index=features.columns)
 print('\nLoadings:')
 print(loadings_df.round(3))
 
-cross_loaded_indicators = loadings_df[(loadings_df.abs() > 0.40).sum(axis=1) > 1]
+abs_loadings = loadings_df.abs()
+
+primary = abs_loadings.max(axis=1)
+alternative = abs_loadings.apply(
+    lambda x: x.nlargest(2).iloc[-1], axis=1
+)
+
+cross_loaded_indicators = loadings_df[(primary <= 0.40) | (alternative >= 0.30) | ((primary - alternative) < 0.20)]
+
+cross_loadings = pd.DataFrame({
+    'Primary': primary,
+    'Alternative': alternative
+})
+
 print('\nLoadings of cross-loaded indicators:')
-print(cross_loaded_indicators.where(cross_loaded_indicators.abs() > 0.4).round(3))
+print(cross_loadings.round(3))
 
 # drop indicators here
 
@@ -106,20 +103,20 @@ city_scores = {
     'Intellectual and Educational Vitality': []
 }
 
-for dimension in city_scores.keys():
-    col_mask = metadata.loc['Dimension', scaled_features_df.columns] == dimension
-    city_scores[dimension] = scaled_features_df.loc[:, col_mask].mean(axis=1).tolist()
+for dim, indicators in dimensions.items():
+    city_scores[dim] = scaled_features_df[indicators].mean(axis=1).tolist()
 
 city_scores_df = pd.DataFrame(city_scores)
+city_scores_df.insert(0, "City", cities)
 
 print('\nCity scores:')
-print(city_scores_df)
+print(city_scores_df.round(3))
 
 rankings = {
-    'Economic Viability and Opportunity': 2,
+    'Economic Viability and Opportunity': 4,
     'Quality of Life': 3,
-    'Health and Safety': 1,
-    'Intellectual and Educational Vitality': 4
+    'Health and Safety': 2,
+    'Intellectual and Educational Vitality': 1
 }
 
 weights = np.array([
@@ -155,3 +152,19 @@ results = results.sort_values('TOPSIS Score', ascending=False).reset_index(drop=
 
 print('\nResults')
 print(results)
+
+# plt.figure(figsize=(10, 6))
+# sns.heatmap(corr_matrix, annot=True, fmt='.2f')
+# plt.title('Correlation Matrix Heatmap')
+# plt.xticks(rotation=45, ha='right')
+# plt.yticks(rotation=0)
+# plt.tight_layout()
+# plt.show()
+# 
+# plt.figure(figsize=(10, 6))
+# sns.heatmap(loadings_df, annot=True, fmt='.2f')
+# plt.title('Loadings Matrix Heatmap')
+# plt.xticks(rotation=45, ha='right')
+# plt.yticks(rotation=0)
+# plt.tight_layout()
+# plt.show()
