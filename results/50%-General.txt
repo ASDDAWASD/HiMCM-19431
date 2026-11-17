@@ -1,0 +1,103 @@
+                                                                 City  Distance to Best  Distance to Worst  TOPSIS Score
+0                                          Boston city, Massachusetts          0.062839           0.300742      0.827166
+1                                             Madison city, Wisconsin          0.063836           0.269729      0.808624
+2                                       Pittsburgh city, Pennsylvania          0.067263           0.274388      0.803122
+3                                              Buffalo city, New York          0.072017           0.285466      0.798545
+4                                        Jersey City city, New Jersey          0.071232           0.279621      0.796974
+5                                          Urban Honolulu CDP, Hawaii          0.077701           0.277548      0.781277
+6                                            Scottsdale city, Arizona          0.083101           0.294236      0.779769
+7                                           Chesapeake city, Virginia          0.077228           0.271227      0.778371
+8                                             Arlington CDP, Virginia          0.082036           0.269976      0.766952
+9                               Washington city, District of Columbia          0.079566           0.257324      0.763822
+10                                      Virginia Beach city, Virginia          0.084393           0.254834      0.751219
+11                                           St. Paul city, Minnesota          0.083242           0.247895      0.748618
+12                                            New York city, New York          0.103209           0.294855      0.740723
+13                                         San Diego city, California          0.092285           0.262229      0.739686
+14                                                 Mesa city, Arizona          0.098590           0.261945      0.726545
+15                                            Newark city, New Jersey          0.102468           0.240655      0.701366
+16                                        Long Beach city, California          0.104465           0.238840      0.695708
+17                                           Anaheim city, California          0.110873           0.244982      0.688432
+18                                             Boise City city, Idaho          0.107765           0.235985      0.686501
+19                                                Tampa city, Florida          0.105431           0.227863      0.683670
+20                                                  Plano city, Texas          0.110958           0.239600      0.683483
+21                                       Los Angeles city, California          0.118883           0.252820      0.680168
+22                                             Chicago city, Illinois          0.109014           0.230729      0.679129
+23                                            Richmond city, Virginia          0.108278           0.226419      0.676489
+24                                                 Frisco city, Texas          0.128185           0.266697      0.675384
+25                                       Bakersfield city, California          0.118634           0.246788      0.675350
+26                                             Chandler city, Arizona          0.113850           0.230612      0.669484
+27                                                El Paso city, Texas          0.113879           0.229348      0.668212
+28                                            Irvine city, California          0.120668           0.241640      0.666946
+29                                              Gilbert town, Arizona          0.124202           0.241998      0.660835
+30                                  San Juan zona urbana, Puerto Rico          0.121659           0.234918      0.658814
+31                                         Riverside city, California          0.135948           0.261838      0.658238
+32                                              Atlanta city, Georgia          0.112672           0.216620      0.657836
+33                                             Lincoln city, Nebraska          0.117425           0.218506      0.650449
+34                                               Omaha city, Nebraska          0.116851           0.214640      0.647500
+35                                       St. Petersburg city, Florida          0.118550           0.212661      0.642070
+36                                    Philadelphia city, Pennsylvania          0.119895           0.212675      0.639489
+37                                              Phoenix city, Arizona          0.124617           0.220944      0.639377
+38                                        Minneapolis city, Minnesota          0.119607           0.210207      0.637350
+39                                               Wichita city, Kansas          0.123977           0.206602      0.624971
+40                                          Milwaukee city, Wisconsin          0.125644           0.208323      0.623784
+41                                           Baltimore city, Maryland          0.127455           0.209380      0.621610
+42                                            Fresno city, California          0.132087           0.207045      0.610513
+43                                       Chula Vista city, California          0.137718           0.215722      0.610349
+44                                        Sacramento city, California          0.135182           0.211425      0.609985
+45                                                                NaN          0.131255           0.200373      0.604211
+46                                             Henderson city, Nevada          0.134098           0.203021      0.602223
+47                                         Jacksonville city, Florida          0.135080           0.199590      0.596378
+48                                                                NaN          0.133933           0.197522      0.595924
+49                                    Colorado Springs city, Colorado          0.137754           0.196374      0.587721
+50                                                 Austin city, Texas          0.139545           0.197559      0.586048
+51                                                  Toledo city, Ohio          0.140225           0.193822      0.580224
+52                                       Albuquerque city, New Mexico          0.142413           0.195956      0.579119
+53                                         Corpus Christi city, Texas          0.140087           0.189692      0.575209
+54                                                Miami city, Florida          0.147518           0.195020      0.569339
+55                                        New Orleans city, Louisiana          0.145751           0.191892      0.568329
+56                                       Raleigh city, North Carolina          0.142585           0.187018      0.567403
+57                                              Aurora city, Colorado          0.157736           0.198290      0.556955
+58                                              Denver city, Colorado          0.147949           0.185940      0.556891
+59                                         Santa Ana city, California          0.147733           0.183458      0.553934
+60                                               Tucson city, Arizona          0.147583           0.183100      0.553702
+61                                              Orlando city, Florida          0.148054           0.183628      0.553626
+62                                           Seattle city, Washington          0.150362           0.182206      0.547877
+63                                       North Las Vegas city, Nevada          0.155515           0.188024      0.547315
+64                                        Durham city, North Carolina          0.152898           0.176900      0.536388
+65                                 Winston-Salem city, North Carolina          0.153340           0.176394      0.534958
+66                                    Greensboro city, North Carolina          0.153431           0.176460      0.534903
+67                                           Fort Wayne city, Indiana          0.155995           0.177141      0.531737
+68                                                Columbus city, Ohio          0.154365           0.174855      0.531118
+69                                             Las Vegas city, Nevada          0.157085           0.177235      0.530135
+70                                          San Jose city, California          0.158215           0.178286      0.529824
+71                                             Fort Worth city, Texas          0.163123           0.182358      0.527838
+72                                              Cincinnati city, Ohio          0.159720           0.176204      0.524536
+73                                              Arlington city, Texas          0.160944           0.174596      0.520342
+74                           Lexington-Fayette urban county, Kentucky          0.158891           0.170425      0.517511
+75                                             Enterprise CDP, Nevada          0.163183           0.174244      0.516389
+76                                         Kansas City city, Missouri          0.161650           0.170350      0.513102
+77                                           St. Louis city, Missouri          0.161919           0.167006      0.507732
+78                                                  Reno city, Nevada          0.164089           0.168413      0.506503
+79                                             Detroit city, Michigan          0.171996           0.175454      0.504977
+80   Louisville/Jefferson County metro government (balance), Kentucky          0.165902           0.167917      0.503018
+81                                               Cleveland city, Ohio          0.174470           0.172998      0.497883
+82                                                 Irving city, Texas          0.167223           0.165621      0.497592
+83                               Indianapolis city (balance), Indiana          0.169102           0.166230      0.495717
+84                                     Charlotte city, North Carolina          0.167467           0.163801      0.494467
+85                                       Port St. Lucie city, Florida          0.183173           0.173775      0.486837
+86                                             Glendale city, Arizona          0.173960           0.164533      0.486076
+87                                              Portland city, Oregon          0.175215           0.154341      0.468330
+88                                                 Laredo city, Texas          0.181647           0.150246      0.452693
+89                                          Stockton city, California          0.192738           0.156686      0.448412
+90                                            San Antonio city, Texas          0.186590           0.142397      0.432835
+91                                     San Francisco city, California          0.187399           0.141758      0.430669
+92                                                Houston city, Texas          0.187612           0.141101      0.429253
+93                                                Garland city, Texas          0.191638           0.143621      0.428387
+94                                                 Dallas city, Texas          0.190227           0.139156      0.422474
+95                                       Oklahoma City city, Oklahoma          0.191340           0.139894      0.422342
+96                                                Lubbock city, Texas          0.209307           0.126316      0.376363
+97                                               Tulsa city, Oklahoma          0.214950           0.120669      0.359541
+98    Nashville-Davidson metropolitan government (balance), Tennessee          0.220572           0.113099      0.338955
+99                                     Anchorage municipality, Alaska          0.234059           0.105617      0.310935
+100                                           Memphis city, Tennessee          0.297364           0.098127      0.248114
+101                                          Oakland city, California          0.269140           0.070549      0.207688
