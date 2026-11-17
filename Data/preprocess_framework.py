@@ -27,8 +27,15 @@ cities = df['City']
 features = df.drop(columns=['City'])
 
 negative_indicators = [
+    'Gini index of inequality',
+    'housing burden',
+    'rent burden',
+    '\% below poverty line',
+    'student/teacher ratio',
+    'deaths per 100,000',
+    'Crime raete per 100,000',
     'Air_Quality_Index',
-    'Crime_Rate'
+    'mean commute time'
 ]
 for indicator in negative_indicators:
     features[indicator] = features[indicator] * -1
