@@ -37,7 +37,8 @@ dimensions = {
     'Quality of Life': [
         '% routine checkup',
         'mean commute time to work (min)',
-        'walkability index'
+        'walkability index',
+        'park access index'
     ]
 }
 
